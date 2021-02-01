@@ -48,6 +48,7 @@ public class UserDaoImpl implements UserDao {
         transaction.begin();
         try {
             em.merge(user);
+            transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
             throw e;
@@ -86,10 +87,9 @@ public class UserDaoImpl implements UserDao {
         Root<User> userRoot = userCriteria.from(User.class);
         userCriteria.select(userRoot);
         if (name != null || secondName != null || email != null || birthday != null) {
-            userCriteria.where(buildCriteria(name, secondName, email, birthday));
+            userCriteria.where(addCriteria(cb, userRoot, name, secondName, email, birthday));
         }
 
-        pageNumber = pageNumber + 1;
         Query q = em.createQuery(userCriteria);
         if (pageNumber > 0) {
             q.setFirstResult(pageNumber * pageSize);
@@ -110,23 +110,23 @@ public class UserDaoImpl implements UserDao {
         CriteriaQuery<Long> criteria = cb.createQuery(Long.class);
         criteria.select(cb.count(criteria.from(User.class)));
         if (name != null || secondName != null || email != null || birthday != null) {
-                  criteria.where(buildCriteria(name, secondName, email, birthday));
+            Root<User> userRoot = criteria.from(User.class);
+            criteria.where(addCriteria(cb, userRoot, name, secondName, email, birthday));
         }
         TypedQuery<Long> query = em.createQuery(criteria);
         return query.getSingleResult();
     }
 
-    private Expression<Boolean> buildCriteria(
+    private Expression<Boolean> addCriteria(
+            CriteriaBuilder cb,
+            Root<User> userRoot,
             String name,
             String secondName,
             String email,
             Date birthday) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> userCriteria = cb.createQuery(User.class);
-        Root<User> userRoot = userCriteria.from(User.class);
         Expression<Boolean> restriction = null;
         if (name != null) {
-            restriction = cb.like(userRoot.get("userName"), name);
+            restriction = cb.like(userRoot.get("name"), name);
         }
         if (secondName != null) {
             Expression<Boolean> loginExpression = cb.like(userRoot.get("secondName"), secondName);

@@ -16,15 +16,16 @@ import javax.json.JsonObjectBuilder;
 import javax.validation.constraints.NotNull;
 
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
-
-import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
+
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -134,13 +135,13 @@ public class UsersRestService extends Application {
      */
     @PUT
     @Path("insert")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED })
     public Response insert(
-            @NotNull @QueryParam("name") String name,
-            @NotNull @QueryParam("secondName") String secondName,
-            @NotNull @QueryParam("email") String email,
-            @NotNull @QueryParam("birthday") String birthday) {
+            @NotNull @FormParam("name") String name,
+            @NotNull @FormParam("secondName") String secondName,
+            @NotNull @FormParam("email") String email,
+            @NotNull @FormParam("birthday") String birthday) {
         try {
             Long id = userService.insertUser(
                         name,
@@ -178,18 +179,19 @@ public class UsersRestService extends Application {
      */
     @POST
     @Path("update")
-    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED })
+    @Produces({ MediaType.TEXT_PLAIN })
+    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED })
     public Response update(
-            @NotNull @QueryParam("id") Long id,
-            @QueryParam("name") String name,
-            @QueryParam("secondName") String secondName,
-            @QueryParam("email") String email,
-            @QueryParam("birthday") String birthday) {
+            @NotNull @FormParam("id") Long id,
+            @FormParam("name") String name,
+            @FormParam("secondName") String secondName,
+            @FormParam("email") String email,
+            @FormParam("birthday") String birthday) {
         try {
             userService.updateUser(id, name, secondName, email, parseBirthday(birthday));
-            return Response.status(Response.Status.OK).entity("Пользователь удалён успешно").build();
+            return Response.status(Response.Status.OK).entity("Пользователь обновлён успешно").build();
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Произошла ошибка при удалении пользователя id=" + id + " Сообщение: " + e.getMessage());
+            LOG.log(Level.SEVERE, "Произошла ошибка при обновлении пользователя id=" + id + " Сообщение: " + e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
     }
@@ -203,7 +205,7 @@ public class UsersRestService extends Application {
      */
     @DELETE
     @Path("delete")
-    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_FORM_URLENCODED })
+    @Consumes({ MediaType.APPLICATION_FORM_URLENCODED })
     public Response delete(@NotNull @QueryParam("id") Long id) {
         try {
             userService.deleteUser(id);

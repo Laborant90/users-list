@@ -21,7 +21,7 @@ public class User implements Serializable {
      * Идентификатор пользователя.
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -100,6 +100,5 @@ public class User implements Serializable {
                 ", birthday=" + sdf.format(birthday) +
                 '}';
     }
-
 
 }

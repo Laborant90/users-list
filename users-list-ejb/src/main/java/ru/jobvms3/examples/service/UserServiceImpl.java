@@ -25,6 +25,13 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserDao userDao;
 
+    public UserServiceImpl() {
+    }
+
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Override
     public Page<User> getUsersByParam(
             int pageNumber,

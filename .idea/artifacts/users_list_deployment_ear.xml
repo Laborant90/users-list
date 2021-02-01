@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="users-list-deployment:ear">
+    <output-path>$PROJECT_DIR$/users-list-deployment/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>users-list-deployment</module>
+        <packaging>ear</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="users-list-deployment.ear">
+      <element id="artifact" artifact-name="users-list-deployment:ear exploded" />
+    </root>
+  </artifact>
+</component>

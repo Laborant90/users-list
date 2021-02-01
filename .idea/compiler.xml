@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="users-list-deployment" />
+        <module name="users-list-ejb" />
+        <module name="users-list-web" />
+        <module name="users-list-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="users-list" target="8" />
+      <module name="users-list-api" target="8" />
+      <module name="users-list-deployment" target="8" />
+      <module name="users-list-ejb" target="8" />
+      <module name="users-list-update-api" target="8" />
+      <module name="users-list-web" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

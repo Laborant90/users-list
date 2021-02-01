@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="users-list-info-api" />
+        </datasource-mapping>
+        <naming-strategy-map />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../users-list-api/target/classes" />
+    <output-test url="file://$MODULE_DIR$/../users-list-api/target/test-classes" />
+    <content url="file://$MODULE_DIR$/../users-list-api">
+      <sourceFolder url="file://$MODULE_DIR$/../users-list-api/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../users-list-api/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../users-list-api/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../users-list-api/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: javax:javaee-api:7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+  </component>
+</module>

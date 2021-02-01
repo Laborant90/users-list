@@ -1,0 +1,33 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="users-list-deployment:ear exploded">
+    <output-path>$PROJECT_DIR$/users-list-deployment/target/users-list-deployment</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>users-list-deployment</module>
+        <packaging>ear</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="users-list-deployment/javaeeApplication/JavaEE" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/users-list-deployment/target/users-list-deployment/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/users-list-deployment/src/main/application" />
+      <element id="directory" name="lib">
+        <element id="archive" name="ru.jobvms3.examples-users-list-api-1.0-SNAPSHOT.jar">
+          <element id="module-output" name="users-list-api" />
+        </element>
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/javaee-api/7.0/javaee-api-7.0.jar" output-file-name="javax-javaee-api-7.0.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar" output-file-name="com.sun.mail-javax.mail-1.5.0.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar" output-file-name="javax.activation-activation-1.1.jar" />
+      </element>
+      <element id="archive" name="users-list-ejb.jar">
+        <element id="artifact" artifact-name="users-list-ejb:ejb exploded" />
+      </element>
+      <element id="archive" name="users-list-web.war">
+        <element id="artifact" artifact-name="users-list-web:war exploded" />
+      </element>
+    </root>
+  </artifact>
+</component>

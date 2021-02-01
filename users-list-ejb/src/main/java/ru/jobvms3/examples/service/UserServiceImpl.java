@@ -3,7 +3,6 @@ package ru.jobvms3.examples.service;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,6 @@ import ru.jobvms3.examples.service.dao.UserDao;
 /**
  * Сервис получения информации из справочника пользователей.
  */
-
 @Stateless
 public class UserServiceImpl implements UserService {
 
@@ -48,7 +46,6 @@ public class UserServiceImpl implements UserService {
 
         return new Page<>(0, 0, Collections.emptyList());
     }
-
 
     @Override
     public void updateUser(Long id, String name, String secondName, String email, Date birthday) {
